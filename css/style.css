@@ -45,8 +45,8 @@ box-shadow: 0px 3px 8px rgb(100,100,100);border-radius:8px;}
 .menu_list li{list-style:none; border-bottom:1px solid #D4D4D4; padding:10px 0px 10px 0px;}
 .menu_list li:last-child{border-bottom:none;}
 .menuicon{float: left; margin-right: 15px;}
-.menuname{display: block; margin-top: 10px;}
-.menuname a{color:#fff;text-decoration:none;}
+.menuname{display: block; margin-top: 8px;}
+.menuname a{color:#fff;text-decoration:none;font-size:20px;}
 .menuname a:hover{color:#fff;text-decoration:none;}
 .menu_click {text-indent: 10px;}
 .menu_click img{cursor:pointer;}
