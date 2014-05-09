@@ -11,13 +11,13 @@ width:100%;
 background:#F3F3F3;
 }
 .main_container{position:relative;}
-.navigation_section{position:fixed;top:0px; left:0px; background:none repeat scroll 0 0 #B60F16;height:100%;width:80%; overflow-x: hidden; overflow-y: auto; 
+.navigation_section{position:fixed;top:0px; left:0px; background:#6A6A6A;height:100%;width:80%; overflow-x: hidden; overflow-y: auto; 
 -webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
 box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
 padding-left:20px;
 z-index: 99;
-/* background:#6A6A6A; */
+
 }
 .content_screen{position:fixed;top:0px; background:url("IIMB_Alumni_app_Login screen.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
   -webkit-background-size: cover;
@@ -44,11 +44,11 @@ box-shadow: 0px 3px 8px rgb(100,100,100);border-radius:8px;}
 .sign_in{float:right; width:100%;background:#9E010C;color:#fff;border:none;}
 .sign_in:hover{background:#9E010C;color:#fff;}
 .navi_top h2{color:#AAAAAA;font-weight:bold; border-bottom:1px solid #D4D4D4;padding:0px 0px 10px 0px; margin-bottom:0px;}
-.menu_list li{list-style:none; border-bottom:1px solid #D4D4D4; padding:10px 0px 10px 0px;}
+.menu_list li{list-style:none; border-bottom:1px solid #D4D4D4; padding:10px 0px 10px 0px; cursor:pointer;}
 .menu_list li:last-child{border-bottom:none;}
 .menuicon{float: left; margin-right: 15px;}
 .menuname{display: block; margin-top: 8px;}
-.menuname a{color:#fff;text-decoration:none;font-size:20px;}
+.menuname a{color:#fff;text-decoration:none;font-size:19px;}
 .menuname a:hover{color:#fff;text-decoration:none;}
 .menu_click {text-indent: 10px;}
 .menu_click img{cursor:pointer;}
