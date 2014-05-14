@@ -32,7 +32,7 @@ $(document).ready(function(){
 	}); 
 	
 	$(".menu_list ul li").click(function(){
-			
+			$('.news_list').empty();
 			var data = $(this).attr("data");
 			var idname = "#"+data;
 			//alert(idname);
@@ -79,10 +79,11 @@ $(document).ready(function(){
 						
 						//$("#news_description").append("<div class='row descr_row'>");
 						if(desc_image !=""){
-							$("#news_description").append("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div>");
+							$("#news_description").html("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div><div class='desc_area'>"+res[indexid]['introtext']+"</div>");
 						
+						}else{
+						$("#news_description").html("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
 						}
-						$("#news_description").append("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
 					});
 				},
 				error: function(rtn){
@@ -131,10 +132,11 @@ $(document).ready(function(){
 						
 						//$("#news_description").append("<div class='row descr_row'>");
 						if(desc_image !=""){
-							$("#event_description").append("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div>");
+							$("#event_description").append("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div><div class='desc_area'>"+res[indexid]['introtext']+"</div>");
 						
-						}
+						}else{
 						$("#event_description").append("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+						}
 					});
 					
 				},
@@ -183,10 +185,11 @@ $(document).ready(function(){
 						
 						//$("#news_description").append("<div class='row descr_row'>");
 						if(desc_image !=""){
-							$("#article_description").append("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div>");
+							$("#article_description").append("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div><div class='desc_area'>"+res[indexid]['introtext']+"</div>");
 						
-						}
+						}else{
 						$("#article_description").append("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+						}
 					});
 					
 				},
@@ -198,12 +201,13 @@ $(document).ready(function(){
 			});
 			
 			}
+			
 			if(data =="section_six"){
 							
 				
 				$.ajax({
 				
-				url: "http://www.iimbaa.org/IIMBAA/mobile/articles2.php",
+				url: "http://www.iimbaa.org/IIMBAA/mobile/member2.php",
 				type: "POST",
 				dataType: "json",
 				//data: {
@@ -216,12 +220,8 @@ $(document).ready(function(){
 					   var index;
 					
 					for (index = 0; index < res.length; ++index) {
-						//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
-						  var images_url = res[index]['image_intro'];
-						  if(images_url ==""){
-							images_url ="images/No_image.png";
-						 }
-						$("#member_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-3 list_images'><img src='"+images_url+"'/></div><div class='col-xs-8 news_expert'><h3>"+res[index]['title']+"</h3><p class='newsdatetime'>"+res[index]['publish_up']+"</p></div></div></li>");
+						
+						$("#member_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['publish_up']+"</p></div></div></li>");
 					} 
 					$(".loading").css("display","none");
 					
