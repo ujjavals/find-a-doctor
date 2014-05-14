@@ -12,23 +12,27 @@ var doctor_value ="";
 var qualification_value="";
 var location_value ="";
 var right = 0;
+			var started =0;
+			var ended = 4;
 $(document).ready(function(){
 		
 	 
 	
 	 $(".menuclick").click(function(){
+		 
 		//alert("hereee");
 		if(right == 0){
-		$(".content_screen").animate({right:'-250px'});
+		$(".content_screen").animate({right:'-80%'});
 		right=250;
 		
 		}else{
-			$(".content_screen").animate({right:'0px'});
+			$(".content_screen").animate({right:'0%'});
 			right= 0;
 		}
 	}); 
 	
 	$(".menu_list ul li").click(function(){
+			
 			var data = $(this).attr("data");
 			var idname = "#"+data;
 			//alert(idname);
@@ -36,225 +40,243 @@ $(document).ready(function(){
 			$(idname).css("display","block");
 			$(".content_screen").animate({right:'0px'});
 			right= 0;
-	});
-
-});
-
-
-
-
-var publisherId = packageId.publisherId;
-function onload(){
-
-
-		$.ajax({
+			$(".loading").css("display","block");
+			
+			if(data =="section_two"){
+							
 				
-				url: "http://fomax.us/Bangalore-doctor/location2.php",
+				$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/news2.php",
 				type: "POST",
 				dataType: "json",
-				success: function (res) {
-					var index;
-					for (index = 0; index < res.length; ++index) {
-						$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
-					}	   
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
 				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
+						  var images_url = res[index]['image_intro'];
+						  if(images_url ==""){
+							images_url ="images/No_image.png";
+						 }
+						$("#news_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-4 list_images'><img src='"+images_url+"'/></div><div class='col-xs-8 news_expert'><h3>"+res[index]['title']+"</h3><p class='newsdatetime'>"+res[index]['publish_up']+"</p></div></div></li>");
+					} 
+					$(".loading").css("display","none");
+					$("#news_section li").click(function(){
+						//alert("hihi");
+						$("#section_two").slideUp();
+						$("#section_two").css("display","none");
+						$("#section_eight").slideDown();
+						$("#section_eight").css("display","block");
+						var indexid = $(this).attr("data");
+						var desc_image = res[indexid]['image_intro'];
+						
+						//$("#news_description").append("<div class='row descr_row'>");
+						if(desc_image !=""){
+							$("#news_description").append("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div>");
+						
+						}
+						$("#news_description").append("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+					});
 				},
 				error: function(rtn){
 					alert("error");
 				}
-			
-			
+				
+				
 			});
 			
-			
-			
-		$.ajax({
-			url :	"http://fomax.us/Bangalore-doctor/specialitylist2.php" ,
-			type : "POST",
-			dataType : "json",
-		
-			success : function(res)
-			{
-				
-				var index;
-				for (index = 0; index < res.length; ++index) {
-						$("#specilties").append("<option value='"+res[index]['speciality_name'] +"'>"+res[index]['speciality_name']+"</option>");
-				}	   
-				
-				
-				
-			
-			},
-			error: function(rtn){
-					alert("error");
 			}
 			
-		});
-		
-		
-			
-
-
-} 
-
-
-function submit(){
-		$("#sceenone").css("display","none");
-		$("#screen_two").css("display","block");
-		var speciality =  $("#specilties").val();
-		var location =   $("#location").val();
-		$.ajax({
-			url :	"http://fomax.us/Bangalore-doctor/Doctors_service2.php" ,
-			type : "POST",
-			dataType : "json",
-			data: {
-			"speciality": speciality,
-			"location": location,
-			},
-			success : function(res)
-			{
-				
-				 var index;
-				for (index = 0; index < res.length; ++index) {
-				
-						//$("#specilties").append("<option>"+res[index]['doctor_name']+"</option>");
-						/*  alert(res[index]['doctor_name']);
-						alert(res[index]['location_name']);
-						alert(res[index]['speciality']);  */
-						//$("#list_style_doc").append("<li><div class='doctor_box'><div class='col-xs-2 doctor_icon'><\/div><div class='col-xs-8 col-sm-offset-1 doctor_contain'><h5>"+res[index]['doctor_name']+"<\/h5><p>"+res[index]['qualification']+"<\/p><div class='row show-grid'><div class='col-xs-4 doctor_icon_map'><\/div><div class='col-xs-10 addres_content'>"+res[index]['location_name']+"<\/div><div style='clear:both;'><\/div><\/div><div class='col-xs-2 get_appointment'><\/div><div style='clear:both;'><\/div><\/div><div style='clear:both;'><\/div><\/div><\/li>");
-						$("#list_style_doc").append("<li><div class='doctor_box'><div class='col-xs-2 doctor_icon'><\/div><div class='col-xs-8 col-sm-offset-1 doctor_contain'><h5>"+res[index]['doctor_name']+"<\/h5><p>"+res[index]['qualification']+"<\/p><div class='row show-grid'><div class='col-xs-4 doctor_icon_map'><\/div><div class='col-xs-10 addres_content'>"+res[index]['location_name']+"<\/div><div style='clear:both;'><\/div><\/div><div class='col-xs-2 get_appointment'><input type='hidden' class='doctorname_value' value='"+res[index]['doctor_name']+"'><input type='hidden' class='qualification_value' value='"+res[index]['qualification']+"'><input type='hidden' class='location_value' value='"+res[index]['location_name']+"'><\/div><div style='clear:both;'><\/div><\/div><div style='clear:both;'><\/div><\/div><\/li>");
-						
-						
-				
-				
-				}	
-				$("body .get_appointment").click(function(){
-						doctor_value = $(this).children('.doctorname_value').val();
-						qualification_value = $(this).children('.qualification_value').val();
-						location_value = $(this).children('.location_value').val();
-						/* alert(doctor_value); */
-						/*alert(qualification_value);
-						alert(location_value); */
-						$("#screen_two").css("display","none");
-						$("#screen_three").css("display","block");
-						
-						
-				});
-				
-			},
-			error: function(rtn){
-					//alert("error");
-			}
-			
-		});
-		
-		
-		
-		return false;
-}
-
-function gohome(){
-	$("#sceenone").css("display","block");
-		$("#screen_two").css("display","none");
-		$("#screen_three").css("display","none");
-
-}
-
-function appointmentsubmit(){
-		
-		/*qualification_value;
-		location_value */
-		var user_name =  $("#user_name").val();
-		var user_email =   $("#user_email").val();
-		var user_mobilenumber =   $("#user_mobilenumber").val();
-		var user_comment =   $("#user_comment").val();
-		var error = 0;
-		var nam = document.getElementById('user_name'); 
-		var emailId = document.getElementById('user_email'); 
-		var phone = document.getElementById('user_mobilenumber');
-		
-		if ((nam.value == "Enter name")||(nam.value == "")){
-			alert("Please Enter Your Name");
-			nam.focus();
-			error =1;
-			return;
-		}
-		
-		//Email id
-	
-		   if((emailId.value == "Enter email") || (emailId.value == "")){
-				alert("Enter Your Email Address");
-				emailId.focus();
-				error =1;
-				return;
-			}else{
-			if(!isValidEmail(emailId.value))
-			{
-				alert("Enter Valid Email Address");
-				emailId.focus();
-				error =1;
-				return;
-			}
-			}
-			
-		//Phone Number
-		if (!ValidPhone(phone.value))
-		{
-			phone.focus();
-			error =1;
-			return;
-		}	
-		
-		
-		if(error ==0){
-		
-				
-				
-				
-				$(".page_loading").css("display","block");
+			if(data =="section_four"){
+							
 				
 				$.ajax({
-					url :	"http://fomax.us/Bangalore-doctor/Appointment2.php" ,
-					type : "POST",
-					dataType : "html",
-					data: {
-					"user": user_name,
-					"emailid": user_email,
-					"mobile": user_mobilenumber,
-					"doctor_value": doctor_value,
-					"qualification_value": qualification_value,
-					"location_value": location_value,
-					"purpose" : user_comment,
-					},
-					success : function(res)
-					{
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/events2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
+						  var images_url = res[index]['image_intro'];
+						  if(images_url ==""){
+							images_url ="images/No_image.png";
+						 }
+						$("#event_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-3 list_images'><img src='"+images_url+"'/></div><div class='col-xs-8 news_expert'><h3>"+res[index]['title']+"</h3><p class='newsdatetime'>"+res[index]['publish_up']+"</p></div></div></li>");
+					} 
+					$(".loading").css("display","none");
+					$("#event_section li").click(function(){
+						//alert("hihi");
+						$("#section_four").slideUp();
+						$("#section_four").css("display","none");
+						$("#section_nine").slideDown();
+						$("#section_nine").css("display","block");
+						var indexid = $(this).attr("data");
+						var desc_image = res[indexid]['image_intro'];
 						
-						if(res==1){
-							$(".page_loading").css("display","none");
-							alert("Appointment is completed successfully.");
-							//$("#user_name").reset();
-							 document.getElementById("user_name").value="";
-							 document.getElementById("user_email").value="";
-							 document.getElementById("user_mobilenumber").value="";
-							 document.getElementById("user_comment").value="";
+						//$("#news_description").append("<div class='row descr_row'>");
+						if(desc_image !=""){
+							$("#event_description").append("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div>");
 						
-							 location.reload(); 
 						}
-						
-						
-						
+						$("#event_description").append("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+					});
 					
-					},
-					error: function(rtn){
-						//	alert("error");
-					}
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+			});
+			
+			}
+			if(data =="section_five"){
+							
+				
+				$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/articles2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+							
+					   var index;
 					
-				});
-		
-		}
-		
+					for (index = 0; index < res.length; ++index) {
+						//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
+						  var images_url = res[index]['image_intro'];
+						  if(images_url ==""){
+							images_url ="images/No_image.png";
+						 }
+						$("#articles_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-3 list_images'><img src='"+images_url+"'/></div><div class='col-xs-8 news_expert'><h3>"+res[index]['title']+"</h3><p class='newsdatetime'>"+res[index]['publish_up']+"</p></div></div></li>");
+					} 
+					$(".loading").css("display","none");
+					$("#articles_section li").click(function(){
+						//alert("hihi");
+						$("#section_five").slideUp();
+						$("#section_five").css("display","none");
+						$("#section_ten").slideDown();
+						$("#section_ten").css("display","block");
+						var indexid = $(this).attr("data");
+						var desc_image = res[indexid]['image_intro'];
+						
+						//$("#news_description").append("<div class='row descr_row'>");
+						if(desc_image !=""){
+							$("#article_description").append("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div>");
+						
+						}
+						$("#article_description").append("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+					});
+					
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+			});
+			
+			}
+			if(data =="section_six"){
+							
+				
+				$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/articles2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
+						  var images_url = res[index]['image_intro'];
+						  if(images_url ==""){
+							images_url ="images/No_image.png";
+						 }
+						$("#member_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-3 list_images'><img src='"+images_url+"'/></div><div class='col-xs-8 news_expert'><h3>"+res[index]['title']+"</h3><p class='newsdatetime'>"+res[index]['publish_up']+"</p></div></div></li>");
+					} 
+					$(".loading").css("display","none");
+					
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+			});
+			
+			}
+			
+	});
+	
+	$('.news_back').click(function(){
+						$("#section_eight").slideUp();
+						$("#section_eight").css("display","none");
+						$("#section_two").slideDown();
+						$("#section_two").css("display","block");
+						
+						
+	
+	
+	});
+	
+	$('.event_back').click(function(){
+						
+						$("#section_nine").slideUp();
+						$("#section_nine").css("display","none");
+						$("#section_four").slideDown();
+						$("#section_four").css("display","block");
+						
+						
+						
+	
+	
+	});
+	$('.article_back').click(function(){
+						
+						$("#section_ten").slideUp();
+						$("#section_ten").css("display","none");
+						$("#section_five").slideDown();
+						$("#section_five").css("display","block");
+						
+						
+	
+	
+	});
+	
+	
 
-}
+});
+
+
 
 
 
