@@ -39,7 +39,7 @@ $(document).ready(function(){
 			$(".content_screen").animate({right:'0px'});
 			right= 0;
 			if(data=="section_two"){
-				alert("dsf");
+				
 				window.location = "news.html";
 			
 				/*json**calling*******/
