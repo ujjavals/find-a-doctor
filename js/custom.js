@@ -12,25 +12,27 @@ var doctor_value ="";
 var qualification_value="";
 var location_value ="";
 var right = 0;
+			var started =0;
+			var ended = 4;
 $(document).ready(function(){
 		
 	 
 	
 	 $(".menuclick").click(function(){
+		 
 		//alert("hereee");
 		if(right == 0){
-		$(".content_screen").animate({right:'-250px'});
+		$(".content_screen").animate({right:'-80%'});
 		right=250;
 		
 		}else{
-			$(".content_screen").animate({right:'0px'});
+			$(".content_screen").animate({right:'0%'});
 			right= 0;
 		}
 	}); 
 	
-	$('#container').load('http://google.com');
-	
 	$(".menu_list ul li").click(function(){
+			$('.news_list').empty();
 			var data = $(this).attr("data");
 			var idname = "#"+data;
 			//alert(idname);
@@ -38,41 +40,331 @@ $(document).ready(function(){
 			$(idname).css("display","block");
 			$(".content_screen").animate({right:'0px'});
 			right= 0;
-			if(data=="section_two"){
-				
-				window.location = "news.html";
+			$(".loading").css("display","block");
 			
-				/*json**calling*******/
-				/*	$.ajax({
+			if(data =="section_two"){
 					
-					url: "http://www.iimbaa.org/IIMBAA/mobile/news.php",
-					type: "POST",
-					//dataType: "json",
-					dataType:"jsonp",
-					crossDomain:true,
-					success: function (res) {
-						alert("sucess");
-						/* var index;
-						for (index = 0; index < res.length; ++index) {
-							$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
-						}	 */   
-					
-				/*	},
-					error: function(rtn){
-						alert("error");
-					}
+				window.location = "news.html";
 				
-				
-					});
-				/*end******/
-		
 			}
-	}); 
+			
+			if(data =="section_four"){
+							
+				window.location = "event.html";
+			
+			
+			}
+			if(data =="section_five"){
+							
+				window.location = "article.html";
+				
+			
+			}
+			
+			if(data =="section_six"){
+							
+				window.location = "member.html";
+				$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/member2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						
+						$("#member_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p></div></div></li>");
+					} 
+					$(".loading").css("display","none");
+					
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+				});
+			
+			}
+			
+	});
+	
+	$('.news_back').click(function(){
+						$("#section_eight").slideUp();
+						$("#section_eight").css("display","none");
+						$("#section_two").slideDown();
+						$("#section_two").css("display","block");
+						
+						
+	
+	
+	});
+	
+	$('.event_back').click(function(){
+						
+						$("#section_nine").slideUp();
+						$("#section_nine").css("display","none");
+						$("#section_four").slideDown();
+						$("#section_four").css("display","block");
+						
+						
+						
+	
+	
+	});
+	$('.article_back').click(function(){
+						
+						$("#section_ten").slideUp();
+						$("#section_ten").css("display","none");
+						$("#section_five").slideDown();
+						$("#section_five").css("display","block");
+						
+						
+	
+	
+	});
+	
+	$("#login_submit").click(function(){
+			var user_name = document.getElementById('user_name').value; 
+			var user_password = document.getElementById('user_password').value; 
+			
+			$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/login2.php",
+				type: "POST",
+				dataType: "json",
+				data: {
+					"username": user_name,
+					"password": user_password,
+				},
+				success: function (res){
+					alert("suceeesss");
+					//alert(res[0]);
+					
+					
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+				});
+	
+	});
+	
+	
 
 });
 
+function news(){
 
 
+		$.ajax({
+						
+						url: "http://www.iimbaa.org/IIMBAA/mobile/news2.php",
+						type: "POST",
+						dataType: "json",
+						//data: {
+						//"start": started,
+						//"end": ended,
+						//},
+						
+						success: function (res) {
+									alert("sucess");
+							   var index;
+							
+							for (index = 0; index < res.length; ++index) {
+								//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
+								  var images_url = res[index]['image_intro'];
+								  if(images_url ==""){
+									images_url ="images/No_image.png";
+								 }
+								$("#news_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-4 list_images'><img src='"+images_url+"'/></div><div class='col-xs-8 news_expert'><h3>"+res[index]['title']+"</h3><p class='newsdatetime'>"+res[index]['publish_up']+"</p></div></div></li>");
+							} 
+							$(".loading").css("display","none");
+							$("#news_section li").click(function(){
+								//alert("hihi");
+								$("#section_two").slideUp();
+								$("#section_two").css("display","none");
+								$("#section_eight").slideDown();
+								$("#section_eight").css("display","block");
+								var indexid = $(this).attr("data");
+								var desc_image = res[indexid]['image_intro'];
+								
+								//$("#news_description").append("<div class='row descr_row'>");
+								if(desc_image !=""){
+									$("#news_description").html("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div><div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+								
+								}else{
+								$("#news_description").html("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+								}
+							});
+						},
+						error: function(rtn){
+							alert("error");
+						}
+						
+						
+					});
+			
+
+
+}
+
+function eventss(){
+
+		$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/events2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
+						  var images_url = res[index]['image_intro'];
+						  if(images_url ==""){
+							images_url ="images/No_image.png";
+						 }
+						$("#event_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-3 list_images'><img src='"+images_url+"'/></div><div class='col-xs-8 news_expert'><h3>"+res[index]['title']+"</h3><p class='newsdatetime'>"+res[index]['publish_up']+"</p></div></div></li>");
+					} 
+					$(".loading").css("display","none");
+					$("#event_section li").click(function(){
+						//alert("hihi");
+						$("#section_four").slideUp();
+						$("#section_four").css("display","none");
+						$("#section_nine").slideDown();
+						$("#section_nine").css("display","block");
+						var indexid = $(this).attr("data");
+						var desc_image = res[indexid]['image_intro'];
+						
+						//$("#news_description").append("<div class='row descr_row'>");
+						if(desc_image !=""){
+							$("#event_description").html("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div><div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+						
+						}else{
+						$("#event_description").html("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+						}
+					});
+					
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+			});
+
+
+
+
+}
+
+function article(){
+	alert("sfdsf");
+	$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/articles2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
+						  var images_url = res[index]['image_intro'];
+						  if(images_url ==""){
+							images_url ="images/No_image.png";
+						 }
+						$("#articles_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-3 list_images'><img src='"+images_url+"'/></div><div class='col-xs-8 news_expert'><h3>"+res[index]['title']+"</h3><p class='newsdatetime'>"+res[index]['publish_up']+"</p></div></div></li>");
+					} 
+					$(".loading").css("display","none");
+					$("#articles_section li").click(function(){
+						//alert("hihi");
+						$("#section_five").slideUp();
+						$("#section_five").css("display","none");
+						$("#section_ten").slideDown();
+						$("#section_ten").css("display","block");
+						var indexid = $(this).attr("data");
+						var desc_image = res[indexid]['image_intro'];
+						
+						//$("#news_description").append("<div class='row descr_row'>");
+						if(desc_image !=""){
+							$("#article_description").html("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div><div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+						
+						}else{
+						$("#article_description").html("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+						}
+					});
+					
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+			});
+
+
+
+
+
+
+
+}
+
+function member(){
+
+	$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/member2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						
+						$("#member_section2").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p></div></div></li>");
+					} 
+					//$(".loading").css("display","none");
+					
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+				});
+
+
+}
 
 
 function isValidEmail(e)
