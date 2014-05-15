@@ -345,8 +345,8 @@ function article(){
 					$(".loading").css("display","none");
 					$("#articles_section li").click(function(){
 						//alert("hihi");
-						$("#section_six").slideUp();
-						$("#section_six").css("display","none");
+						$("#section_five").slideUp();
+						$("#section_five").css("display","none");
 						$("#section_ten").slideDown();
 						$("#section_ten").css("display","block");
 						var indexid = $(this).attr("data");
