@@ -42,6 +42,12 @@ $(document).ready(function(){
 			right= 0;
 			$(".loading").css("display","block");
 			
+			if(data =="section_three"){
+					
+				window.location = "index.html";
+				
+			}
+			
 			if(data =="section_two"){
 					
 				window.location = "news.html";
@@ -64,33 +70,7 @@ $(document).ready(function(){
 			if(data =="section_six"){
 							
 				window.location = "member.html";
-				$.ajax({
 				
-				url: "http://www.iimbaa.org/IIMBAA/mobile/member2.php",
-				type: "POST",
-				dataType: "json",
-				//data: {
-				//"start": started,
-				//"end": ended,
-				//},
-				
-				success: function (res) {
-							
-					   var index;
-					
-					for (index = 0; index < res.length; ++index) {
-						
-						$("#member_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p></div></div></li>");
-					} 
-					$(".loading").css("display","none");
-					
-				},
-				error: function(rtn){
-					alert("error");
-				}
-				
-				
-				});
 			
 			}
 			
@@ -129,6 +109,15 @@ $(document).ready(function(){
 						
 	
 	
+	}); 
+	
+	$('.member_back').click(function(){
+						
+						$("#section_ten").slideUp();
+						$("#section_ten").css("display","none");
+						$("#section_six").slideDown();
+						$("#section_six").css("display","block");
+	
 	});
 	
 	$("#login_submit").click(function(){
@@ -165,7 +154,7 @@ $(document).ready(function(){
 
 function news(){
 
-
+	$(".loading").css("display","block");
 		$.ajax({
 						
 						url: "http://www.iimbaa.org/IIMBAA/mobile/news2.php",
@@ -177,11 +166,11 @@ function news(){
 						//},
 						
 						success: function (res) {
-									alert("sucess");
+									
 							   var index;
 							
 							for (index = 0; index < res.length; ++index) {
-								//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
+								
 								  var images_url = res[index]['image_intro'];
 								  if(images_url ==""){
 									images_url ="images/No_image.png";
@@ -190,7 +179,7 @@ function news(){
 							} 
 							$(".loading").css("display","none");
 							$("#news_section li").click(function(){
-								//alert("hihi");
+								
 								$("#section_two").slideUp();
 								$("#section_two").css("display","none");
 								$("#section_eight").slideDown();
@@ -198,7 +187,7 @@ function news(){
 								var indexid = $(this).attr("data");
 								var desc_image = res[indexid]['image_intro'];
 								
-								//$("#news_description").append("<div class='row descr_row'>");
+								
 								if(desc_image !=""){
 									$("#news_description").html("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div><div class='desc_area'>"+res[indexid]['introtext']+"</div>");
 								
@@ -219,6 +208,7 @@ function news(){
 }
 
 function eventss(){
+	$(".loading").css("display","block");
 
 		$.ajax({
 				
@@ -235,7 +225,7 @@ function eventss(){
 					   var index;
 					
 					for (index = 0; index < res.length; ++index) {
-						//$("#location").append("<option value='"+res[index]['location_name']+"'>"+res[index]['location_name']+"</option>");
+						
 						  var images_url = res[index]['image_intro'];
 						  if(images_url ==""){
 							images_url ="images/No_image.png";
@@ -244,7 +234,7 @@ function eventss(){
 					} 
 					$(".loading").css("display","none");
 					$("#event_section li").click(function(){
-						//alert("hihi");
+						
 						$("#section_four").slideUp();
 						$("#section_four").css("display","none");
 						$("#section_nine").slideDown();
@@ -252,7 +242,7 @@ function eventss(){
 						var indexid = $(this).attr("data");
 						var desc_image = res[indexid]['image_intro'];
 						
-						//$("#news_description").append("<div class='row descr_row'>");
+					
 						if(desc_image !=""){
 							$("#event_description").html("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div><div class='desc_area'>"+res[indexid]['introtext']+"</div>");
 						
@@ -275,7 +265,7 @@ function eventss(){
 }
 
 function article(){
-	alert("sfdsf");
+	$(".loading").css("display","block");
 	$.ajax({
 				
 				url: "http://www.iimbaa.org/IIMBAA/mobile/articles2.php",
@@ -301,8 +291,8 @@ function article(){
 					$(".loading").css("display","none");
 					$("#articles_section li").click(function(){
 						//alert("hihi");
-						$("#section_five").slideUp();
-						$("#section_five").css("display","none");
+						$("#section_six").slideUp();
+						$("#section_six").css("display","none");
 						$("#section_ten").slideDown();
 						$("#section_ten").css("display","block");
 						var indexid = $(this).attr("data");
@@ -333,6 +323,90 @@ function article(){
 
 }
 
+function memberss(){
+	
+	$(".loading").css("display","block");
+	$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/member2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						
+						$("#member_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p></div></div></li>");
+					} 
+					$(".loading").css("display","none");
+					$("#member_section li").click(function(){
+						//alert("hihi");
+						$("#section_six").slideUp();
+						$("#section_six").css("display","none");
+						$("#section_eleven").slideDown();
+						$("#section_eleven").css("display","block");
+						var indexid = $(this).attr("data");
+						
+						
+						$("#member_description").html("<div id='member_description_"+indexid+"'><\/div>");
+						$("#member_description_"+indexid+"").append("<div class='row'><div class='col-xs-4 list_images'><img src='images\/No_image.png'><\/div><div class='col-xs-8 news_expert'><h3>"+res[indexid]['firstname']+" "+res[indexid]['lastname']+"<\/h3><p class='newsdatetime'><strong>D.O.B : <\/strong>"+res[indexid]['cb_dob']+"<\/p><\/div><\/div>");
+						//$("#member_description").html("<div id='member_description_"+indexid+"'><div class='col-xs-4 list_images'><img src='images\/No_image.png'><\/div><div class='col-xs-8 news_expert'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"<\/h3><p class='newsdatetime'><strong>D.O.B : <\/strong>"+res[index]['cb_dob']+"<\/p><\/div><\/div>");
+						
+						//$("#member_description").html("<div id='member_description_"+indexid+"'><div class='row'><div class='col-xs-4 list_images'><img src='images\/No_image.png'><\/div><div class='col-xs-8 news_expert'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"<\/h3><p class='newsdatetime'><strong>D.O.B : <\/strong>"+res[index]['cb_dob']+"<\/p><\/div><div style='clear:both;'><\/div></div>");
+						
+						 if(res[indexid]['cb_country'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Country<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_country']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_city'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>City<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_city']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_program'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Program<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_program']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+							
+						}
+						if(res[indexid]['cb_subprogram'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Sub-Program<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_subprogram']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_mobile'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Mobile<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_mobile']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_residentialphone'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Residential Phone<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_residentialphone']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_graduation'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Graduation Year<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_graduation']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_companyname'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Company Name<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_companyname']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_industry'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Industry<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_industry']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+							
+						}
+						if(res[indexid]['email'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Email<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['email']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						} 
+						
+					});
+					
+					
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+				});
+
+
+}
+
 function member(){
 
 	$.ajax({
@@ -351,9 +425,9 @@ function member(){
 					
 					for (index = 0; index < res.length; ++index) {
 						
-						$("#member_section2").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p></div></div></li>");
+						$("#member_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p></div></div></li>");
 					} 
-					//$(".loading").css("display","none");
+					$(".loading").css("display","none");
 					
 				},
 				error: function(rtn){
@@ -364,9 +438,9 @@ function member(){
 				});
 
 
+
+
 }
-
-
 function isValidEmail(e)
 {
     
