@@ -49,7 +49,7 @@ $(document).ready(function(){
 			}
 			
 			if(data =="section_two"){
-					
+				
 				window.location = "news.html";
 				
 			}
@@ -72,6 +72,12 @@ $(document).ready(function(){
 				window.location = "member.html";
 				
 			
+			}
+			if(data =="section_one"){
+				window.location = "login.html";
+			}
+			if(data=="section_seven"){
+				window.location = "jobs.html";
 			}
 			
 	});
@@ -129,18 +135,29 @@ $(document).ready(function(){
 				url: "http://www.iimbaa.org/IIMBAA/mobile/login2.php",
 				type: "POST",
 				dataType: "json",
-				data: {
+				data:{
 					"username": user_name,
 					"password": user_password,
 				},
 				success: function (res){
-					alert("suceeesss");
+					alert("Login is completed successfully");
+					var someVarName = "11";
+					var someUserName = user_name;
+					localStorage.setItem("someVarName", someVarName);
+					localStorage.setItem("someUserName", someUserName);
+					$("li[data='section_six'],li[data='section_seven']").css("display","block");
+					$("#user_namee").html(someUserName);
+					$("#form_login").css("display","none");
+					$("#form_logout").css("display","block");
+					//alert(res['status']);
 					//alert(res[0]);
 					
 					
 				},
 				error: function(rtn){
-					alert("error");
+					alert("Enter correct user name or password");
+					
+					
 				}
 				
 				
@@ -149,11 +166,31 @@ $(document).ready(function(){
 	});
 	
 	
+	$("#logout_submit").click(function(){
+					$("#form_logout").css("display","none");
+					$("#form_login").css("display","block");
+					$("li[data='section_six'],li[data='section_seven']").css("display","none");
+					var someVarName = "10";
+					localStorage.setItem("someVarName", someVarName);
+					
+	
+	});
+	
+	
 
 });
 
 function news(){
-
+	var someVarName = localStorage.getItem("someVarName");
+	if(someVarName == 11){
+	$("li[data='section_six'],li[data='section_seven']").css("display","block");
+	
+	}
+	if(someVarName == 10){
+	$("li[data='section_six'],li[data='section_seven']").css("display","none");
+	
+	}
+	
 	$(".loading").css("display","block");
 		$.ajax({
 						
@@ -203,11 +240,20 @@ function news(){
 						
 					});
 			
-
+	
 
 }
 
 function eventss(){
+	var someVarName = localStorage.getItem("someVarName");
+	if(someVarName == 11){
+	$("li[data='section_six'],li[data='section_seven']").css("display","block");
+	
+	}
+	if(someVarName == 10){
+	$("li[data='section_six'],li[data='section_seven']").css("display","none");
+	
+	}
 	$(".loading").css("display","block");
 
 		$.ajax({
@@ -265,6 +311,14 @@ function eventss(){
 }
 
 function article(){
+	var someVarName = localStorage.getItem("someVarName");
+	if(someVarName == 11){
+		$("li[data='section_six'],li[data='section_seven']").css("display","block");
+	}
+	if(someVarName == 10){
+		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+	
+	}
 	$(".loading").css("display","block");
 	$.ajax({
 				
@@ -324,6 +378,14 @@ function article(){
 }
 
 function memberss(){
+	var someVarName = localStorage.getItem("someVarName");
+	if(someVarName == 11){
+		$("li[data='section_six'],li[data='section_seven']").css("display","block");
+	}
+	if(someVarName == 10){
+		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+	
+	}
 	
 	$(".loading").css("display","block");
 	$.ajax({
@@ -407,40 +469,55 @@ function memberss(){
 
 }
 
-function member(){
-
-	$.ajax({
-				
-				url: "http://www.iimbaa.org/IIMBAA/mobile/member2.php",
-				type: "POST",
-				dataType: "json",
-				//data: {
-				//"start": started,
-				//"end": ended,
-				//},
-				
-				success: function (res) {
-							
-					   var index;
-					
-					for (index = 0; index < res.length; ++index) {
-						
-						$("#member_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p></div></div></li>");
-					} 
-					$(".loading").css("display","none");
-					
-				},
-				error: function(rtn){
-					alert("error");
-				}
-				
-				
-				});
-
-
-
+function home(){
+	
+	var someVarName = localStorage.getItem("someVarName");
+	if(someVarName == 11){
+		$("li[data='section_six'],li[data='section_seven']").css("display","block");
+	}
+	if(someVarName == 10){
+		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+	
+	}
+	
 
 }
+function jobs(){
+
+	var someVarName = localStorage.getItem("someVarName");
+	if(someVarName == 11){
+		$("li[data='section_six'],li[data='section_seven']").css("display","block");
+	}
+	if(someVarName == 10){
+		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+	
+	}
+
+}
+
+function login(){
+	var someVarName = localStorage.getItem("someVarName");
+	if(someVarName == 11){
+	$("li[data='section_six'],li[data='section_seven']").css("display","block");
+	$("#form_login").css("display","none");
+	$("#form_logout").css("display","block");
+		
+		var someUserName = localStorage.getItem("someUserName");
+		$("#user_namee").html(someUserName);
+	}
+	if(someVarName == 10){
+		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+		$("#form_logout").css("display","none");
+		$("#form_login").css("display","block");
+		
+	
+	
+	}
+	
+	
+
+}
+
 function isValidEmail(e)
 {
     
