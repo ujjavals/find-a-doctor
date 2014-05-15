@@ -79,6 +79,10 @@ $(document).ready(function(){
 			if(data=="section_seven"){
 				window.location = "jobs.html";
 			}
+			if(data=="section_eight"){
+				window.location = "login.html";
+			
+			}
 			
 	});
 	
@@ -126,6 +130,21 @@ $(document).ready(function(){
 	
 	});
 	
+	
+	$('.jobs_back').click(function(){
+						
+						$("#section_twelve").slideUp();
+						$("#section_twelve").css("display","none");
+						$("#section_seven").slideDown();
+						$("#section_seven").css("display","block");
+						
+	
+	});
+	
+						
+	
+	
+	
 	$("#login_submit").click(function(){
 			var user_name = document.getElementById('user_name').value; 
 			var user_password = document.getElementById('user_password').value; 
@@ -146,11 +165,14 @@ $(document).ready(function(){
 					localStorage.setItem("someVarName", someVarName);
 					localStorage.setItem("someUserName", someUserName);
 					$("li[data='section_six'],li[data='section_seven']").css("display","block");
+					$("li[data='section_one']").css("display","none");
+					$("li[data='section_eight']").css("display","block");
 					$("#user_namee").html(someUserName);
 					$("#form_login").css("display","none");
 					$("#form_logout").css("display","block");
 					//alert(res['status']);
 					//alert(res[0]);
+					window.location = "index.html";
 					
 					
 				},
@@ -170,6 +192,8 @@ $(document).ready(function(){
 					$("#form_logout").css("display","none");
 					$("#form_login").css("display","block");
 					$("li[data='section_six'],li[data='section_seven']").css("display","none");
+					$("li[data='section_eight']").css("display","none");
+					$("li[data='section_one']").css("display","block");
 					var someVarName = "10";
 					localStorage.setItem("someVarName", someVarName);
 					
@@ -185,9 +209,15 @@ function news(){
 	if(someVarName == 11){
 	$("li[data='section_six'],li[data='section_seven']").css("display","block");
 	
+	$("li[data='section_one']").css("display","none");
+	$("li[data='section_eight']").css("display","block");
+	
 	}
 	if(someVarName == 10){
 	$("li[data='section_six'],li[data='section_seven']").css("display","none");
+	
+	$("li[data='section_eight']").css("display","none");
+	$("li[data='section_one']").css("display","block");
 	
 	}
 	
@@ -248,10 +278,14 @@ function eventss(){
 	var someVarName = localStorage.getItem("someVarName");
 	if(someVarName == 11){
 	$("li[data='section_six'],li[data='section_seven']").css("display","block");
+	$("li[data='section_one']").css("display","none");
+	$("li[data='section_eight']").css("display","block");
 	
 	}
 	if(someVarName == 10){
 	$("li[data='section_six'],li[data='section_seven']").css("display","none");
+	$("li[data='section_eight']").css("display","none");
+	$("li[data='section_one']").css("display","block");
 	
 	}
 	$(".loading").css("display","block");
@@ -314,9 +348,13 @@ function article(){
 	var someVarName = localStorage.getItem("someVarName");
 	if(someVarName == 11){
 		$("li[data='section_six'],li[data='section_seven']").css("display","block");
+		$("li[data='section_one']").css("display","none");
+		$("li[data='section_eight']").css("display","block");
 	}
 	if(someVarName == 10){
 		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+		$("li[data='section_eight']").css("display","none");
+		$("li[data='section_one']").css("display","block");
 	
 	}
 	$(".loading").css("display","block");
@@ -381,9 +419,13 @@ function memberss(){
 	var someVarName = localStorage.getItem("someVarName");
 	if(someVarName == 11){
 		$("li[data='section_six'],li[data='section_seven']").css("display","block");
+		$("li[data='section_one']").css("display","none");
+		$("li[data='section_eight']").css("display","block");
 	}
 	if(someVarName == 10){
 		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+		$("li[data='section_eight']").css("display","none");
+		$("li[data='section_one']").css("display","block");
 	
 	}
 	
@@ -474,9 +516,13 @@ function home(){
 	var someVarName = localStorage.getItem("someVarName");
 	if(someVarName == 11){
 		$("li[data='section_six'],li[data='section_seven']").css("display","block");
+		$("li[data='section_one']").css("display","none");
+		$("li[data='section_eight']").css("display","block");
 	}
 	if(someVarName == 10){
 		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+		$("li[data='section_eight']").css("display","none");
+		$("li[data='section_one']").css("display","block");
 	
 	}
 	
@@ -487,11 +533,91 @@ function jobs(){
 	var someVarName = localStorage.getItem("someVarName");
 	if(someVarName == 11){
 		$("li[data='section_six'],li[data='section_seven']").css("display","block");
+		$("li[data='section_one']").css("display","none");
+		$("li[data='section_eight']").css("display","block");
 	}
 	if(someVarName == 10){
 		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+		$("li[data='section_eight']").css("display","none");
+		$("li[data='section_one']").css("display","block");
 	
 	}
+	
+	$(".loading").css("display","block");
+	$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/jobs2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						
+						$("#jobs_section").append("<li data='"+index+"'><div class='row'><div class='col-xs-11 news_expert'><h3>"+res[index]['title']+"<\/h3><p class='newsdatetime'>"+res[index]['created']+"<\/p><\/div><\/div><\/li>");
+					} 
+					$(".loading").css("display","none");
+					$("#jobs_section li").click(function(){
+					
+						$("#section_seven").slideUp();
+						$("#section_seven").css("display","none");
+						$("#section_twelve").slideDown();
+						$("#section_twelve").css("display","block");
+						var indexid = $(this).attr("data");
+						
+						
+						$("#jobs_description").html("<div class='jobdesc_box'><div class='jobs_descr_box'><h4>"+res[indexid]['title']+"</h4><p class='datetimejobs'>"+res[indexid]['created']+"</p></div><div class='jobs_descr_box'><p><strong>Company</strong> <br/>"+res[indexid]['company']+"</p></div><div class='jobs_descr_box'><p><strong>Email-Id </strong> <br/>"+res[indexid]['email']+"</p></div><div class='jobs_descr_box'><p>"+res[indexid]['introtext']+"</p></div></div>");
+						/* $("#member_description_"+indexid+"").append("<div class='row'><div class='col-xs-4 list_images'><img src='images\/No_image.png'><\/div><div class='col-xs-8 news_expert'><h3>"+res[indexid]['firstname']+" "+res[indexid]['lastname']+"<\/h3><p class='newsdatetime'><strong>D.O.B : <\/strong>"+res[indexid]['cb_dob']+"<\/p><\/div><\/div>");
+						
+						 if(res[indexid]['cb_country'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Country<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_country']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_city'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>City<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_city']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_program'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Program<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_program']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+							
+						}
+						if(res[indexid]['cb_subprogram'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Sub-Program<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_subprogram']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_mobile'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Mobile<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_mobile']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_residentialphone'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Residential Phone<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_residentialphone']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_graduation'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Graduation Year<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_graduation']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_companyname'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Company Name<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_companyname']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_industry'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Industry<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_industry']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+							
+						}
+						if(res[indexid]['email'] !=""){
+							$("#member_description_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Email<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['email']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}  */
+						
+					}); 
+					
+					
+				},
+				error: function(rtn){
+					alert("error");
+				}
+				
+				
+		});
 
 }
 
@@ -501,6 +627,8 @@ function login(){
 	$("li[data='section_six'],li[data='section_seven']").css("display","block");
 	$("#form_login").css("display","none");
 	$("#form_logout").css("display","block");
+	$("li[data='section_one']").css("display","none");
+	$("li[data='section_eight']").css("display","block");
 		
 		var someUserName = localStorage.getItem("someUserName");
 		$("#user_namee").html(someUserName);
@@ -509,6 +637,8 @@ function login(){
 		$("li[data='section_six'],li[data='section_seven']").css("display","none");
 		$("#form_logout").css("display","none");
 		$("#form_login").css("display","block");
+		$("li[data='section_eight']").css("display","none");
+		$("li[data='section_one']").css("display","block");
 		
 	
 	
