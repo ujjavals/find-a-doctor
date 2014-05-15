@@ -57,7 +57,7 @@ box-shadow: 0px 3px 8px rgb(100,100,100);border-radius:8px;}
 .menu_click img{cursor:pointer;}
 #section_one{width:100%; height:100%;display:none;}
 #section_two{width:100%; height:100%;background:#fff; display:none;}
-#section_three{width:100%; height:100%; display:none;}
+#section_three{width:100%; height:100%;}
 #section_four{width:100%; height:100%; display:none; background:#fff;}
 #section_five{width:100%; height:100%;display:none; background:#fff; }
 #section_six{width:100%; height:100%; display:none; background:#fff;}
@@ -65,7 +65,11 @@ box-shadow: 0px 3px 8px rgb(100,100,100);border-radius:8px;}
 #section_eight{width:100%; height:100%; display:none; background:#fff;}
 #section_nine{width:100%; height:100%; display:none; background:#fff;}
 #section_ten{width:100%; height:100%; display:none; background:#fff;}
-li[data="section_six"],li[data="section_seven"]{ display:none; }
+#section_eleven{width:100%; height:100%; display:none; background:#fff;}
+#section_sixx{width:100%; height:100%; background:#fff;}
+li[data="section_six"],li[data="section_seven"]{ /* display:none;  */}
+#member_section li h3{margin:4px 0 2px; font-size:16px;}
+#member_section li p{margin:2px 0;}
 .top_heading{font-size:20px;}
 .news_box{margin:20px 0px 0px;background:#fff; height: 80%;  overflow-x: hidden;
     overflow-y: auto; position:relative;}
@@ -76,7 +80,11 @@ border: 1px solid #CCCCCC;
  margin-top: 4px;
   padding: 2px;
 }
-.loading{background:url("ajax-loader.gif") no-repeat scroll center 20% rgba(0, 0, 0, 0);width:100%;height:16px;position: fixed; top:45%; z-index:9990; display:none;}
+.menu_click buton{font-size:10px;}
+.member_desc_bx{margin-top:15px; padding-bottom: 12px; border-bottom: 1px solid #CCCCCC;}
+.desc_key{padding-left:0px; font-size:12px; font-weight:bold;}
+.desc_value{ padding-left:0px; font-size:11px; text-align: center;}
+.loading{background:url("ajax-loader.gif") no-repeat scroll center 20% rgba(0, 0, 0, 0);width:100%;height:16px;position: absolute; top:45%; z-index:9990; display:none;}
 .descr_row{margin-left:0px;margin-right:0px;}
 .descr_row li{border-bottom:none;}
 .news_list li{list-style:none; padding:10px 15px; border-bottom:1px solid #D4D4D4;  cursor: pointer;}
@@ -88,7 +96,7 @@ border: 1px solid #CCCCCC;
    overflow-x:hidden;
    overflow-y:auto;
 }
-.more_info{padding:10px 20px;}
+.more_info{padding:10px 10px;}
 
 .home_box p{font-size:13px;text-align:justify;}
 .home_box_content{width:75%;background:#fff;margin:40px auto 15%;padding:6%; -moz-box-shadow: 0px 3px 8px rgb(100,100,100);
