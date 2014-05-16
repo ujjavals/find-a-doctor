@@ -264,7 +264,7 @@ function news(){
 							});
 						},
 						error: function(rtn){
-							alert("Seems you are offline.Please check your internet connection.");
+							alert("Seems you are offline. Please check your internet connection.");
 						}
 						
 						
@@ -333,7 +333,7 @@ function eventss(){
 					
 				},
 				error: function(rtn){
-					alert("Seems you are offline.Please check your internet connection.");
+					alert("Seems you are offline. Please check your internet connection.");
 				}
 				
 				
@@ -401,7 +401,7 @@ function article(){
 					
 				},
 				error: function(rtn){
-					alert("Seems you are offline.Please check your internet connection.");
+					alert("Seems you are offline. Please check your internet connection.");
 				}
 				
 				
@@ -502,7 +502,7 @@ function memberss(){
 					
 				},
 				error: function(rtn){
-					alert("Seems you are offline.Please check your internet connection.");
+					alert("Seems you are offline. Please check your internet connection.");
 				}
 				
 				
@@ -543,7 +543,7 @@ function home(){
 					
 				},
 				error: function(rtn){
-					alert("Seems you are offline.Please check your internet connection.");
+					alert("Seems you are offline. Please check your internet connection.");
 				}
 				
 				
@@ -636,7 +636,7 @@ function jobs(){
 					
 				},
 				error: function(rtn){
-					alert("Seems you are offline.Please check your internet connection.");
+					alert("Seems you are offline. Please check your internet connection.");
 				}
 				
 				
