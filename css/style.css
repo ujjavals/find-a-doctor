@@ -99,7 +99,14 @@ border: 1px solid #CCCCCC;
 }
 .more_info{padding:10px 10px;}
 
-.home_box p{font-size:13px;text-align:justify;  word-break: break-all; word-wrap: break-word;}
+.home_box p{font-size:13px;text-align:justify;    word-break: normal;  word-wrap: break-word;
+
+ -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto; 
+	
+   }
 .home_box_content{width:75%;background:#fff;margin:40px auto 15%;padding:6%; -moz-box-shadow: 0px 3px 8px rgb(100,100,100);
 -webkit-box-shadow: 0px 3px 8px rgb(100,100,100);
 box-shadow: 0px 3px 8px rgb(100,100,100);border-radius:8px;}
