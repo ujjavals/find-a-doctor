@@ -264,7 +264,7 @@ function news(){
 							});
 						},
 						error: function(rtn){
-							alert("error");
+							alert("Seems you are offline.Please check your internet connection.");
 						}
 						
 						
@@ -333,7 +333,7 @@ function eventss(){
 					
 				},
 				error: function(rtn){
-					alert("error");
+					alert("Seems you are offline.Please check your internet connection.");
 				}
 				
 				
@@ -401,7 +401,7 @@ function article(){
 					
 				},
 				error: function(rtn){
-					alert("error");
+					alert("Seems you are offline.Please check your internet connection.");
 				}
 				
 				
@@ -502,7 +502,7 @@ function memberss(){
 					
 				},
 				error: function(rtn){
-					alert("error");
+					alert("Seems you are offline.Please check your internet connection.");
 				}
 				
 				
@@ -525,6 +525,29 @@ function home(){
 		$("li[data='section_one']").css("display","block");
 	
 	}
+	
+	//alert("connection checking");
+	$.ajax({
+				
+				url: "http://www.iimbaa.org/IIMBAA/mobile/news2.php",
+				type: "POST",
+				dataType: "json",
+				//data: {
+				//"start": started,
+				//"end": ended,
+				//},
+				
+				success: function (res) {
+						//alert("connection successfull");	
+					   
+					
+				},
+				error: function(rtn){
+					alert("Seems you are offline.Please check your internet connection.");
+				}
+				
+				
+			});
 	
 
 }
@@ -613,7 +636,7 @@ function jobs(){
 					
 				},
 				error: function(rtn){
-					alert("error");
+					alert("Seems you are offline.Please check your internet connection.");
 				}
 				
 				
