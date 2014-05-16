@@ -594,8 +594,29 @@ function jobs(){
 						$("#section_twelve").css("display","block");
 						var indexid = $(this).attr("data");
 						
+						var phone_number = res[indexid]['phone'];
+						if(phone_number =="" || phone_number == "null" ){
+							phone_number = "not available";
+						}
 						
-						$("#jobs_description").html("<div class='jobdesc_box'><div class='jobs_descr_box'><h4>"+res[indexid]['title']+"</h4><p class='datetimejobs'>"+res[indexid]['created']+"</p></div><div class='jobs_descr_box'><p><strong>Company</strong> <br/>"+res[indexid]['company']+"</p></div><div class='jobs_descr_box'><p><strong>Email-Id </strong> <br/>"+res[indexid]['email']+"</p></div><div class='jobs_descr_box'><p>"+res[indexid]['introtext']+"</p></div></div>");
+						var attachment = res[indexid]['Title'];
+						
+							function empty( mixed_var ) {
+								return ( typeof(mixed_var) === 'undefined' || mixed_var === "" || mixed_var === 0   || mixed_var === "0" || mixed_var === null  || mixed_var === false );
+							}
+							
+							if(empty(attachment)){
+								attachment = "not available";
+						
+							}else{
+								
+								attachment ="<a href='http://www.iimbaa.org/IIMBAA/images/Jobs/"+attachment+"'>"+res[indexid]['Name']+"</a>";
+							}
+						
+						
+						$("#jobs_description").html("<div class='jobdesc_box'><div class='jobs_descr_box'><h4>"+res[indexid]['title']+"</h4></div><div class='jobs_descr_box'><p><strong>Company</strong> <br/>"+res[indexid]['company']+"</p></div><div class='jobs_descr_box'><p><strong>Email-Id </strong> <br/>"+res[indexid]['email']+"</p><div class='jobs_descr_box'><p><strong>Created Date</strong> <br/>"+res[indexid]['created']+"</p></div><div class='jobs_descr_box'><p><strong>Phone number </strong> <br/>"+phone_number+"</p></div><div class='jobs_descr_box'><p>"+res[indexid]['introtext']+"</p></div><div class='jobs_descr_box'><p><strong>Attachment</strong> <br/>"+attachment+"</p></div></div>");
+						
+						
 						/* $("#member_description_"+indexid+"").append("<div class='row'><div class='col-xs-4 list_images'><img src='images\/No_image.png'><\/div><div class='col-xs-8 news_expert'><h3>"+res[indexid]['firstname']+" "+res[indexid]['lastname']+"<\/h3><p class='newsdatetime'><strong>D.O.B : <\/strong>"+res[indexid]['cb_dob']+"<\/p><\/div><\/div>");
 						
 						 if(res[indexid]['cb_country'] !=""){
