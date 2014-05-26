@@ -61,13 +61,16 @@ box-shadow: 0px 3px 8px rgb(100,100,100);border-radius:8px;}
 #section_four{width:100%; height:100%; display:none; background:#fff;}
 #section_five{width:100%; height:100%;display:none; background:#fff; }
 #section_six{width:100%; height:100%; display:none; background:#fff;}
+#section_six2{width:100%; height:100%; display:none; background:#fff;}
 #section_seven{width:100%; height:100%; display:none; background:#fff;}
 #section_eight{width:100%; height:100%; display:none; background:#fff;}
 #section_nine{width:100%; height:100%; display:none; background:#fff;}
 #section_ten{width:100%; height:100%; display:none; background:#fff;}
 #section_eleven{width:100%; height:100%; display:none; background:#fff;}
+#section_eleven2{width:100%; height:100%; display:none; background:#fff;}
 #section_sixx{width:100%; height:100%; background:#fff;}
 #section_twelve{width:100%; height:100%; display:none; background:#fff;}
+#section_fiveteen{width:100%; height:100%; display:none; background:#fff;}
 li[data="section_six"],li[data="section_seven"],li[data="section_eight"]{  display:none; }
 #member_section li h3{margin:4px 0 2px; font-size:16px;}
 #member_section li p{margin:2px 0;}
@@ -121,3 +124,20 @@ p{text-align:justify;}
 .jobdesc_box{padding:0px 10px;}
 .datetimejobs{font-size:12px; color:#ADADAD;}
 .jobs_descr_box > p{  font-size: 12px;}
+.desc_area img{width:100% !important; float:none !important; display:block;margin:5px auto !important;max-width:200px;}
+.desc_area p{padding-left:0px !important; text-align:justify;}
+.desc_area{text-align:justify; }
+.member_search{padding:0px 30px;}
+.search_button{ background: none repeat scroll 0 0 #9E010C;
+    border: medium none;
+    color: #FFFFFF;
+   
+}
+.search_button:hover{ background: none repeat scroll 0 0 #9E010C; color: #FFFFFF; }
+.button_s{text-align:right;}
+#program_list > option {text-indent: 15px;}
+#year_graduation> option {text-indent: 15px;}
+#membersearch_section2{display:none;}
+#membersearch_section2 li h3 { font-size: 16px; margin: 4px 0 2px; }
+#membersearch_section2 li p { margin: 2px 0; }
+#section_six2{display:block;}
