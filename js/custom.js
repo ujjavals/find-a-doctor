@@ -135,12 +135,22 @@ $(document).ready(function(){
 						
 						$("#section_twelve").slideUp();
 						$("#section_twelve").css("display","none");
-						$("#section_seven").slideDown();
-						$("#section_seven").css("display","block");
+						$("#section_six").slideDown();
+						$("#section_six").css("display","block");
 						
 	
 	});
 	
+	
+	$('.membersearch_back').click(function(){
+						
+						$("#section_eleven2").slideUp();
+						$("#section_eleven2").css("display","none");
+						$("#section_six2").slideDown();
+						$("#section_six2").css("display","block");
+						
+	
+	});
 						
 	
 	
@@ -389,13 +399,17 @@ function article(){
 						$("#section_ten").css("display","block");
 						var indexid = $(this).attr("data");
 						var desc_image = res[indexid]['image_intro'];
-						
+						var intrtext= res[indexid]['introtext'];
+						intrtext = intrtext.replace(/src=/g, 'src="');
+						intrtext = intrtext.replace(/""/g, '"');
+						desc_image ="";
+						//alert(intrtext);
 						//$("#news_description").append("<div class='row descr_row'>");
 						if(desc_image !=""){
 							$("#article_description").html("<div class='images_area'><img src='"+res[indexid]['image_intro']+"'/></div><div class='desc_area'>"+res[indexid]['introtext']+"</div>");
 						
 						}else{
-						$("#article_description").html("<div class='desc_area'>"+res[indexid]['introtext']+"</div>");
+						$("#article_description").html("<div class='desc_area'>"+intrtext+"</div>");
 						}
 					});
 					
@@ -689,6 +703,126 @@ function login(){
 	}
 	
 	
+
+}
+
+function adv_search(){
+		
+			$.ajax({
+				url: "http://iimbaa.org/IIMBAA/mobile/programs2.php",
+				type: "POST",
+				dataType: "json",
+				success: function (res) {
+					var index;
+					for (index = 0; index < res.length; ++index) {
+						$("#program_list").append("<option value='"+res[index]['fieldtitle']+"'>"+res[index]['fieldtitle']+"<\/option>");
+					} 
+				},
+				error: function(rtn){
+					alert("Seems you are offline. Please check your internet connection.");
+				}
+			});
+			
+			var d = new Date();
+			var n = d.getFullYear();
+			for(index2 = 1976; index2 < n; ++index2 ){
+				$("#year_graduation").append("<option value='"+index2+"'>"+index2+"<\/option>");
+			
+			}
+		
+}
+
+function member_search(){
+		 var userfirst_name_member = document.getElementById('userfirst_name_member').value; 
+		var userlast_name_member = document.getElementById('userlast_name_member').value; 
+		var year_graduation = document.getElementById('year_graduation').value; 
+		var program_list = document.getElementById('program_list').value; 
+		var usercity_name_member = document.getElementById('usercity_name_member').value; 
+		$("#membersearch_section").css("display","none");
+		$("#membersearch_section2").css("display","block");
+		
+		$(".loading").css("display","block");
+		$.ajax({
+				
+				url: "http://iimbaa.org/IIMBAA/mobile/Search2.php",
+				type: "POST",
+				dataType: "json",
+				data: {
+				"firstname": userfirst_name_member,
+				"lastname": userlast_name_member,
+				"year": year_graduation,
+				"program": program_list,
+				"city": usercity_name_member,
+				},
+				
+				success: function (res) {
+							
+					   var index;
+					
+					for (index = 0; index < res.length; ++index) {
+						
+						$("#membersearch_section23").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p></div></div></li>");
+					} 
+					$(".loading").css("display","none");
+					 $("#membersearch_section23 li").click(function(){
+						//alert("hihi");
+						$("#section_six2").slideUp();
+						$("#section_six2").css("display","none");
+						$("#section_eleven2").slideDown();
+						$("#section_eleven2").css("display","block");
+						var indexid = $(this).attr("data");
+						
+						
+						$("#member_description2").html("<div id='member_description2_"+indexid+"'><\/div>");
+						$("#member_description2_"+indexid+"").append("<div class='row'><div class='col-xs-4 list_images'><img src='images\/No_image.png'><\/div><div class='col-xs-8 news_expert'><h3>"+res[indexid]['firstname']+" "+res[indexid]['lastname']+"<\/h3><p class='newsdatetime'><strong>D.O.B : <\/strong>"+res[indexid]['cb_dob']+"<\/p><\/div><\/div>");
+						//$("#member_description").html("<div id='member_description_"+indexid+"'><div class='col-xs-4 list_images'><img src='images\/No_image.png'><\/div><div class='col-xs-8 news_expert'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"<\/h3><p class='newsdatetime'><strong>D.O.B : <\/strong>"+res[index]['cb_dob']+"<\/p><\/div><\/div>");
+						
+						//$("#member_description").html("<div id='member_description_"+indexid+"'><div class='row'><div class='col-xs-4 list_images'><img src='images\/No_image.png'><\/div><div class='col-xs-8 news_expert'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"<\/h3><p class='newsdatetime'><strong>D.O.B : <\/strong>"+res[index]['cb_dob']+"<\/p><\/div><div style='clear:both;'><\/div></div>");
+						
+						 if(res[indexid]['cb_country'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Country<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_country']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_city'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>City<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_city']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_program'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Program<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_program']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+							
+						}
+						if(res[indexid]['cb_subprogram'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Sub-Program<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_subprogram']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_mobile'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Mobile<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_mobile']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_residentialphone'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Residential Phone<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_residentialphone']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_graduation'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Graduation Year<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_graduation']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_companyname'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Company Name<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_companyname']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						}
+						if(res[indexid]['cb_industry'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Industry<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['cb_industry']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+							
+						}
+						if(res[indexid]['email'] !=""){
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Email<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['email']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+						} 
+						
+					}); 
+					
+					
+				},
+				error: function(rtn){
+					alert("Seems you are offline. Please check your internet connection.");
+				}
+				
+				
+		});
+		
 
 }
 
