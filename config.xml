@@ -59,10 +59,10 @@
    
 
     <!-- Define app splash screen for each platform. -->
-    <gap:splash src="http://s27.postimg.org/ymwdbduc3/Default.png"       gap:platform="android" gap:qualifier="port-ldpi" />
-    <gap:splash src="http://s27.postimg.org/ymwdbduc3/Default.png"       gap:platform="android" gap:qualifier="port-mdpi" />
-    <gap:splash src="http://s27.postimg.org/ymwdbduc3/Default.png"       gap:platform="android" gap:qualifier="port-hdpi" />
-    <gap:splash src="http://s27.postimg.org/ymwdbduc3/Default.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
+    <gap:splash src="http://s22.postimg.org/7r67qr82p/splash.png"       gap:platform="android" gap:qualifier="port-ldpi" />
+    <gap:splash src="http://s22.postimg.org/7r67qr82p/splash.png"       gap:platform="android" gap:qualifier="port-mdpi" />
+    <gap:splash src="http://s22.postimg.org/7r67qr82p/splash.png"       gap:platform="android" gap:qualifier="port-hdpi" />
+    <gap:splash src="http://s22.postimg.org/7r67qr82p/splash.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
   
     <!--
         Define access to external domains.
