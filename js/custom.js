@@ -68,8 +68,8 @@ $(document).ready(function(){
 			}
 			
 			if(data =="section_six"){
-							
-				window.location = "member.html";
+					
+				window.location = "search.html";
 				
 			
 			}
@@ -773,7 +773,7 @@ function member_search(){
 					
 					for (index = 0; index < res.length; ++index) {
 						
-						$("#membersearch_section23").append("<li data='"+index+"'><div class='row'><div class='col-xs-8'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p></div></div></li>");
+						$("#membersearch_section23").append("<li data='"+index+"'><div class='row'><div class='col-xs-11'><h3>"+res[index]['firstname']+" "+res[index]['lastname']+"</h3><p class='newsdatetime'>"+res[index]['cb_graduation']+"</p><p class='newsdatetime'><img src='http://s2.postimg.org/5ev6nse6t/mobile_phone.png' class='smallicon_im'>"+res[index]['cb_mobile']+"</p><p class='newsdatetime'><img src='http://s2.postimg.org/niy78fbv9/mail2.png' class='smallicon_im'><a href='mailto:"+res[index]['email']+"' >"+res[index]['email']+"</a></p></div></div></li>");
 					} 
 					$(".loading").css("display","none");
 					 $("#membersearch_section23 li").click(function(){
@@ -821,7 +821,7 @@ function member_search(){
 							
 						}
 						if(res[indexid]['email'] !=""){
-							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Email<\/div><div class='col-xs-8 desc_value'><p>"+res[indexid]['email']+"<\/p><\/div><div style='clear:both;'><\/div><\/div>");
+							$("#member_description2_"+indexid+"").append("<div class='member_desc_bx'><div class='col-xs-4 desc_key'>Email<\/div><div class='col-xs-8 desc_value'><p><a href='mailto:"+res[indexid]['email']+"'>"+res[indexid]['email']+"<\/a><\/p><\/div><div style='clear:both;'><\/div><\/div>");
 						} 
 						
 					}); 
@@ -912,5 +912,4 @@ function valid9(f) {
 function valid5(f) {
     !(/^[ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â±a-z. ]*$/i).test(f.value)?f.value = f.value.replace(/[^ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â±a-z]/ig,''):null;
 }
-
 
