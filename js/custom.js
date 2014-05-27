@@ -707,6 +707,18 @@ function login(){
 }
 
 function adv_search(){
+	var someVarName = localStorage.getItem("someVarName");
+	if(someVarName == 11){
+		$("li[data='section_six'],li[data='section_seven']").css("display","block");
+		$("li[data='section_one']").css("display","none");
+		$("li[data='section_eight']").css("display","block");
+	}
+	if(someVarName == 10){
+		$("li[data='section_six'],li[data='section_seven']").css("display","none");
+		$("li[data='section_eight']").css("display","none");
+		$("li[data='section_one']").css("display","block");
+	
+	}
 		
 			$.ajax({
 				url: "http://iimbaa.org/IIMBAA/mobile/programs2.php",
