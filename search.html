@@ -106,6 +106,19 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/cordova.js"></script>
+<script type="text/javascript">
+ document.addEventListener("deviceready", onDeviceReady, false);
 
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        navigator.splashscreen.show();
+    }
+	 function onDeviceReady() {
+        navigator.splashscreen.hide();
+    }
+
+</script>
 </body>
 </html>
