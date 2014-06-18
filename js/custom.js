@@ -18,18 +18,29 @@ $(document).ready(function(){
 		
 	 
 	
-	 $(".menuclick").click(function(){
+	 /*  $(".menuclick").click(function(){
 		 
 		//alert("hereee");
 		if(right == 0){
-		$(".content_screen").animate({right:'-80%'});
+		$(".content_screen").animate({right:'-80%'},200);
 		right=250;
 		
 		}else{
-			$(".content_screen").animate({right:'0%'});
+			$(".content_screen").animate({right:'0%'},200);
 			right= 0;
 		}
-	}); 
+	});   */
+	 $(".menuclick").on("tap",function(){
+		
+		if(right == 0){
+		$(".content_screen").animate({right:'-80%'},200);
+		right=250;
+		
+		}else{
+			$(".content_screen").animate({right:'0%'},200);
+			right= 0;
+		}
+	});  
 	
 	$(".menu_list ul li").click(function(){
 			$('.news_list').empty();
